@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
 
-@interface Foo : NSObject; @end;
+@interface Foo : NSObject <NSURLConnectionDelegate>; @end;
 @interface Bar : Foo; @end;
 @interface Baz : NSObject; @end;
