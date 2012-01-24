@@ -253,10 +253,10 @@ typedef struct SomeFloatPairPair {
     assertPass(test_expect(a).toEqual(b));
 
     CGRect failRect = CGRectMake(0.0f, 0.0f, 50.0f, 50.1f);
-    assertFail(test_expect(a).toEqual(failRect));
+    assertPass(test_expect(a).Not.toEqual(failRect));
 
-    assertFail(test_expect(a).toEqual(CGRectInfinite));
-    assertFail(test_expect(a).toEqual(CGRectNull));
+    assertPass(test_expect(a).Not.toEqual(CGRectInfinite));
+    assertPass(test_expect(a).Not.toEqual(CGRectNull));
 }
 
 @end
