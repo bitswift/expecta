@@ -9,5 +9,5 @@ BOOL EXPIsNumberFloat(NSNumber *number) {
 }
 
 BOOL EXPIsValueRect(NSValue *value) {
-    return strcmp([value objCType], @encode(CGRect)) == 0 || strcmp([value objCType], @encode(NSValue)) == 0;
+    return strcmp([value objCType], @encode(CGRect)) == 0 || strcmp([value objCType], @encode(NSRect)) == 0;
 }
