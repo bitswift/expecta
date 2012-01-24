@@ -21,7 +21,7 @@
 - (void)test_toConformTo {
   assertPass(test_expect(foo).toConformTo(@protocol(NSURLConnectionDelegate)));
   assertPass(test_expect(bar).toConformTo(@protocol(NSURLConnectionDelegate)));
-  assertPass(test_expect(bar).toConformTo(@protocol(NSURLConnectionDelegate)));
+  assertPass(test_expect(bar).toConformTo(@protocol(NSObject)));
   assertFail(test_expect(nil).toConformTo(@protocol(NSURLConnectionDelegate)), @"the actual value is nil/null");
   assertFail(test_expect(foo).toConformTo(nil), @"the expected value is nil/null");
   assertFail(test_expect(foo).toConformTo(@protocol(NSCoding)), @"expected: an object conforming to <NSCoding>, got: an instance of Foo, which does not conform to <NSCoding>");
