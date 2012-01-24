@@ -70,7 +70,6 @@ id _EXPObjectify(char *type, ...) {
   } else if(strcmp(type, @encode(CGRect)) == 0) {
     CGRect actual = va_arg(v, CGRect);
     obj = [NSValue valueWithCGRect:actual];
-  }
 #endif
   } else if(strstr(type, "ff}{") != NULL) { //TODO: of course this only works for a 2x2 e.g. CGRect
     obj = [[[EXPFloatTuple alloc] initWithFloatValues:(float *)va_arg(v, float[4]) size:4] autorelease];
