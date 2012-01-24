@@ -3,13 +3,16 @@
 
 EXPMatcherImplementationBegin(_toEqual, (id expected)) {
   match(^BOOL{
-#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
       if ([actual isKindOfClass:[NSValue class]] && [expected isKindOfClass:[NSValue class]]) {
         if (EXPIsValueRect(actual) && EXPIsValueRect(expected)) {
+
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             return CGRectEqualToRect((CGRect)[actual rectValue], (CGRect)[expected rectValue]);
+#else
+            return CGRectEqualToRect([actual CGRectValue], [expected CGRectValue]);
+#endif
         }
     }
-#endif
 
     if((actual == expected) || [actual isEqual:expected]) {
       return YES;
