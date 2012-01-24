@@ -13,3 +13,4 @@
 #import "EXPMatchers+toConformTo.h"
 #import "EXPMatchers+toContain.h"
 #import "EXPMatchers+toEqual.h"
+#import "EXPMatchers+toRespondTo.h"
