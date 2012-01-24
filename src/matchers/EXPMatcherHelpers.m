@@ -7,3 +7,7 @@ BOOL EXPIsValuePointer(NSValue *value) {
 BOOL EXPIsNumberFloat(NSNumber *number) {
   return strcmp([number objCType], @encode(float)) == 0;
 }
+
+BOOL EXPIsValueRect(NSValue *value) {
+    return strcmp([value objCType], @encode(CGRect)) == 0 || strcmp([value objCType], @encode(NSValue)) == 0;
+}

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3B183F14CF4015006BFA25 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3B183C14CF400A006BFA25 /* ApplicationServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		1E3B184214CF40AF006BFA25 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3B183C14CF400A006BFA25 /* ApplicationServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		1E3B184314CF40C1006BFA25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3B184014CF405C006BFA25 /* CoreGraphics.framework */; };
+		1E3B184414CF4DBC006BFA25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3B184014CF405C006BFA25 /* CoreGraphics.framework */; };
 		4913B4C71411E01A00040ECB /* EXPMatchers+toBeGreaterThanTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4913B4C61411E01A00040ECB /* EXPMatchers+toBeGreaterThanTest.m */; };
 		4913B4C81411E01A00040ECB /* EXPMatchers+toBeGreaterThanTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4913B4C61411E01A00040ECB /* EXPMatchers+toBeGreaterThanTest.m */; };
 		4913B4CC1411E18A00040ECB /* EXPMatchers+toBeGreaterThan.h in Headers */ = {isa = PBXBuildFile; fileRef = 4913B4CA1411E18A00040ECB /* EXPMatchers+toBeGreaterThan.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -183,6 +187,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3B183C14CF400A006BFA25 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		1E3B184014CF405C006BFA25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		4913B4C61411E01A00040ECB /* EXPMatchers+toBeGreaterThanTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toBeGreaterThanTest.m"; sourceTree = "<group>"; };
 		4913B4CA1411E18A00040ECB /* EXPMatchers+toBeGreaterThan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeGreaterThan.h"; sourceTree = "<group>"; };
 		4913B4CB1411E18A00040ECB /* EXPMatchers+toBeGreaterThan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toBeGreaterThan.m"; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E3B184414CF4DBC006BFA25 /* CoreGraphics.framework in Frameworks */,
 				E9B777EA14BA317800D8DC76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E3B184314CF40C1006BFA25 /* CoreGraphics.framework in Frameworks */,
 				E9B777F114BA31DE00D8DC76 /* Foundation.framework in Frameworks */,
 				E9B777F014BA31DA00D8DC76 /* SenTestingKit.framework in Frameworks */,
 				E93067E213B2E6D100EA26FF /* libExpecta-iOS.a in Frameworks */,
@@ -298,6 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E3B184214CF40AF006BFA25 /* ApplicationServices.framework in Frameworks */,
 				E9B777E714BA316200D8DC76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E3B183F14CF4015006BFA25 /* ApplicationServices.framework in Frameworks */,
 				E9B777EC14BA31BE00D8DC76 /* Foundation.framework in Frameworks */,
 				E9B777EF14BA31D100D8DC76 /* SenTestingKit.framework in Frameworks */,
 				E9ACDF2113B2DD520010F4D7 /* libExpecta.a in Frameworks */,
@@ -478,6 +488,7 @@
 		E9B777E414BA314A00D8DC76 /* macosx */ = {
 			isa = PBXGroup;
 			children = (
+				1E3B183C14CF400A006BFA25 /* ApplicationServices.framework */,
 				E930679913B2E22A00EA26FF /* Foundation.framework */,
 			);
 			name = macosx;
@@ -486,6 +497,7 @@
 		E9B777E614BA315200D8DC76 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				1E3B184014CF405C006BFA25 /* CoreGraphics.framework */,
 				E9B777E814BA316E00D8DC76 /* Foundation.framework */,
 			);
 			name = ios;

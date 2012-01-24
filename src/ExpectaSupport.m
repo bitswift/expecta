@@ -62,6 +62,12 @@ id _EXPObjectify(char *type, ...) {
   } else if(strstr(type, @encode(EXPBasicBlock)) != NULL) {
     id actual = va_arg(v, EXPBasicBlock);
     obj = [[actual copy] autorelease];
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+  } else if(strcmp(type, @encode(CGRect)) == 0 || strcmp(type, @encode(NSRect)) == 0) {
+    CGRect actual = va_arg(v, CGRect);
+    NSLog(@"Creating a rect out of %@", NSStringFromRect(actual));
+    obj = [NSValue valueWithRect:actual];
+#endif
   } else if(strstr(type, "ff}{") != NULL) { //TODO: of course this only works for a 2x2 e.g. CGRect
     obj = [[[EXPFloatTuple alloc] initWithFloatValues:(float *)va_arg(v, float[4]) size:4] autorelease];
   } else if(strstr(type, "=ff}") != NULL) {

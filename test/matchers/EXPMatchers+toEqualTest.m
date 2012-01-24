@@ -241,4 +241,10 @@ typedef struct SomeFloatPairPair {
     assertPass(test_expect(a).toEqual(b));
 }
 
+- (void)test_toEqual_CGRect {
+    CGRect a = CGRectNull;
+    CGRect b = CGRectNull;
+    assertPass(test_expect(a).toEqual(b));
+}
+
 @end

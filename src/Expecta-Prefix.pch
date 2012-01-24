@@ -1,3 +1,13 @@
 #ifdef __OBJC__
 #  import <Foundation/Foundation.h>
+
 #endif
+
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+#  import <ApplicationServices/ApplicationServices.h>
+#else
+# import <CoreGraphics/CoreGraphics.h>
+#endif
+
+
+
