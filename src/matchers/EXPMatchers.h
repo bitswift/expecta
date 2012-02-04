@@ -14,3 +14,4 @@
 #import "EXPMatchers+toContain.h"
 #import "EXPMatchers+toEqual.h"
 #import "EXPMatchers+toRespondTo.h"
+#import "EXPMatchers+toSupportArchiving.h"
