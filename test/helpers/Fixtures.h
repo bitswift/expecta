@@ -2,7 +2,7 @@
 
 @interface Foo : NSObject <NSURLConnectionDelegate>; @end;
 
-@interface Bar : Foo
+@interface Bar : Foo <NSCopying>
 - (NSString *)barMethod;
 @end
 

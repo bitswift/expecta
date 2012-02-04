@@ -6,6 +6,15 @@
 - (NSString *)barMethod {
   return @"Bar!";
 }
+
+- (id)copyWithZone:(NSZone *)zone {
+  return [[[self class] allocWithZone:zone] init];
+}
+
+- (BOOL)isEqual:(Bar *)obj {
+  return [obj isKindOfClass:[Bar class]];
+}
+
 @end
 
 @implementation Baz; @end
