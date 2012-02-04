@@ -15,3 +15,4 @@
 #import "EXPMatchers+toEqual.h"
 #import "EXPMatchers+toRespondTo.h"
 #import "EXPMatchers+toSupportArchiving.h"
+#import "EXPMatchers+toSupportCopying.h"
