@@ -4,14 +4,23 @@
 EXPMatcherImplementationBegin(_toEqual, (id expected)) {
   match(^BOOL{
       if ([actual isKindOfClass:[NSValue class]] && [expected isKindOfClass:[NSValue class]]) {
-        if (EXPIsValueRect(actual) && EXPIsValueRect(expected)) {
-
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-            return CGRectEqualToRect((CGRect)[actual rectValue], (CGRect)[expected rectValue]);
-#else
-            return CGRectEqualToRect([actual CGRectValue], [expected CGRectValue]);
-#endif
+        if (EXPIsValueRect(actual) && EXPIsValueRect(expected)) {
+            return CGRectEqualToRect([actual rectValue], [expected rectValue]);
+        } else if (EXPIsValueSize(actual) && EXPIsValueSize(expected)) {
+            return CGSizeEqualToSize([actual sizeValue], [expected sizeValue]);
+        } else if (EXPIsValuePoint(actual) && EXPIsValuePoint(expected)) {
+            return CGPointEqualToPoint([actual pointValue], [expected pointValue]);
         }
+#else
+        if (EXPIsValueRect(actual) && EXPIsValueRect(expected)) {
+            return CGRectEqualToRect([actual CGRectValue], [expected CGRectValue]);
+        } else if (EXPIsValueSize(actual) && EXPIsValueSize(expected)) {
+            return CGSizeEqualToSize([actual CGSizeValue], [expected CGSizeValue]);
+        } else if (EXPIsValuePoint(actual) && EXPIsValuePoint(expected)) {
+            return CGPointEqualToPoint([actual CGPointValue], [expected CGPointValue]);
+        }
+#endif
     }
 
     if((actual == expected) || [actual isEqual:expected]) {
