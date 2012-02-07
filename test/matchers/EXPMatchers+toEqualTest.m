@@ -247,6 +247,12 @@ typedef struct SomeFloatPairPair {
     assertPass(test_expect(a).toEqual(b));
 }
 
+- (void)test_toEqual_CGRectInfinite {
+    CGRect a = CGRectInfinite;
+    CGRect b = CGRectInfinite;
+    assertPass(test_expect(a).toEqual(b));
+}
+
 - (void)test_toEqual_CGRect {
     CGRect a = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
     CGRect b = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
@@ -257,6 +263,29 @@ typedef struct SomeFloatPairPair {
 
     assertPass(test_expect(a).Not.toEqual(CGRectInfinite));
     assertPass(test_expect(a).Not.toEqual(CGRectNull));
+    assertPass(test_expect(a).Not.toEqual(CGRectZero));
+}
+
+- (void)test_toEqual_CGSize {
+    CGSize a = CGSizeMake(50.0f, 50.0f);
+    CGSize b = CGSizeMake(50.0f, 50.0f);
+    assertPass(test_expect(a).toEqual(b));
+
+    CGSize failSize = CGSizeMake(50.0f, 50.1f);
+    assertPass(test_expect(a).Not.toEqual(failSize));
+
+    assertPass(test_expect(a).Not.toEqual(CGSizeZero));
+}
+
+- (void)test_toEqual_CGPoint {
+    CGPoint a = CGPointMake(50.0f, 50.0f);
+    CGPoint b = CGPointMake(50.0f, 50.0f);
+    assertPass(test_expect(a).toEqual(b));
+
+    CGPoint failPoint = CGPointMake(50.0f, 50.1f);
+    assertPass(test_expect(a).Not.toEqual(failPoint));
+
+    assertPass(test_expect(a).Not.toEqual(CGPointZero));
 }
 
 @end

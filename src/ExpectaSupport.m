@@ -66,10 +66,22 @@ id _EXPObjectify(char *type, ...) {
   } else if(strcmp(type, @encode(CGRect)) == 0 || strcmp(type, @encode(NSRect)) == 0) {
     CGRect actual = va_arg(v, CGRect);
     obj = [NSValue valueWithRect:actual];
+  } else if(strcmp(type, @encode(CGSize)) == 0 || strcmp(type, @encode(NSSize)) == 0) {
+    CGSize actual = va_arg(v, CGSize);
+    obj = [NSValue valueWithSize:actual];
+  } else if(strcmp(type, @encode(CGPoint)) == 0 || strcmp(type, @encode(NSPoint)) == 0) {
+    CGPoint actual = va_arg(v, CGPoint);
+    obj = [NSValue valueWithPoint:actual];
 #else
   } else if(strcmp(type, @encode(CGRect)) == 0) {
     CGRect actual = va_arg(v, CGRect);
     obj = [NSValue valueWithCGRect:actual];
+  } else if(strcmp(type, @encode(CGSize)) == 0) {
+    CGSize actual = va_arg(v, CGSize);
+    obj = [NSValue valueWithCGSize:actual];
+  } else if(strcmp(type, @encode(CGPoint)) == 0) {
+    CGPoint actual = va_arg(v, CGPoint);
+    obj = [NSValue valueWithCGPoint:actual];
 #endif
   } else if(strstr(type, "ff}{") != NULL) { //TODO: of course this only works for a 2x2 e.g. CGRect
     obj = [[[EXPFloatTuple alloc] initWithFloatValues:(float *)va_arg(v, float[4]) size:4] autorelease];
