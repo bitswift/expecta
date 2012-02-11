@@ -29,4 +29,18 @@
   assertEquals(self.someValue, (NSUInteger)10);
 }
 
+- (void)test_Not_toInvoke {
+  NSString *failureMessage = [NSString stringWithFormat:@"expected: setAnotherValue: not to be invoked on %@", self];
+
+  assertFail(test_expect([^{
+    self.anotherValue = 15;
+  } copy]).Not.toInvoke(self, @selector(setAnotherValue:)), failureMessage);
+  assertEquals(self.anotherValue, (NSUInteger)15);
+
+  assertPass(test_expect([^{
+    self.someValue = 20;
+  } copy]).Not.toInvoke(self, @selector(setAnotherValue:)));
+  assertEquals(self.someValue, (NSUInteger)20);
+}
+
 @end
