@@ -11,6 +11,8 @@
 @end
 
 
+// The actual value passed to expect must be a heap allocated block.
+
 EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
   BOOL actualIsNil = (actual == nil);
   BOOL targetIsNil = (target == nil);
@@ -47,7 +49,7 @@ EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
       return [realClass instanceMethodSignatureForSelector:selector];
     };
 
-    // Set forwardSelectorBlock as the forwardSelector: implementation on EXPMatcherToInvokeProxy
+    // Set forwardSelectorBlock as the forwardInvocation: implementation on EXPMatcherToInvokeProxy
     const char *forwardInvocationTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([EXPMatcherToInvokeProxy class], @selector(forwardInvocation:)));
     IMP forwardInvocationIMP = imp_implementationWithBlock((__bridge void *)forwardInvocationBlock);
 
