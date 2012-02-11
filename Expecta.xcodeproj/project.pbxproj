@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6A28E914E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */; };
+		1A6A28EA14E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */; };
+		1A6A28EB14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */; };
+		1A6A28EC14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */; };
+		1A840BC714E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */; };
+		1A840BC814E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */; };
 		1E1866A314CF68B5006AF3EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1866A214CF68B5006AF3EB /* UIKit.framework */; };
 		1E1866A514CF68BC006AF3EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1866A214CF68B5006AF3EB /* UIKit.framework */; };
 		1E3A2F9E14D7AD6A00F1C46B /* EXPMatchers+toSupportArchivingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3A2F9A14D7AA3000F1C46B /* EXPMatchers+toSupportArchivingTest.m */; };
@@ -201,6 +207,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toInvoke.h"; sourceTree = "<group>"; };
+		1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toInvoke.m"; sourceTree = "<group>"; };
+		1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toInvokeTest.m"; sourceTree = "<group>"; };
 		1E1866A214CF68B5006AF3EB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1E3A2F9A14D7AA3000F1C46B /* EXPMatchers+toSupportArchivingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toSupportArchivingTest.m"; sourceTree = "<group>"; };
 		1E3A2FAC14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toSupportArchiving.h"; sourceTree = "<group>"; };
@@ -447,6 +456,8 @@
 				1E3A2FAD14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m */,
 				D0C00A1414DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h */,
 				D0C00A1514DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m */,
+				1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */,
+				1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */,
 				E9ACDF5413B2DDC60010F4D7 /* EXPMatchers.h */,
 			);
 			path = matchers;
@@ -488,6 +499,7 @@
 				D0B6D0BD14CE2DAF00769330 /* EXPMatchers+toRespondToTest.m */,
 				1E3A2F9A14D7AA3000F1C46B /* EXPMatchers+toSupportArchivingTest.m */,
 				D0C00A2014DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m */,
+				1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */,
 			);
 			path = matchers;
 			sourceTree = "<group>";
@@ -568,6 +580,7 @@
 				D0B6D0B914CE2D0900769330 /* EXPMatchers+toRespondTo.h in Headers */,
 				1E3A2FAF14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h in Headers */,
 				D0C00A1714DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h in Headers */,
+				1A6A28EA14E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +616,7 @@
 				D0B6D0B814CE2D0900769330 /* EXPMatchers+toRespondTo.h in Headers */,
 				1E3A2FAE14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h in Headers */,
 				D0C00A1614DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h in Headers */,
+				1A6A28E914E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +801,7 @@
 				D0B6D0BB14CE2D0900769330 /* EXPMatchers+toRespondTo.m in Sources */,
 				1E3A2FB114D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m in Sources */,
 				D0C00A1914DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m in Sources */,
+				1A6A28EC14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +835,7 @@
 				D0B6D0BF14CE2DAF00769330 /* EXPMatchers+toRespondToTest.m in Sources */,
 				1E3A2F9F14D7AD7F00F1C46B /* EXPMatchers+toSupportArchivingTest.m in Sources */,
 				D0C00A2214DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */,
+				1A840BC814E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,6 +869,7 @@
 				D0B6D0BA14CE2D0900769330 /* EXPMatchers+toRespondTo.m in Sources */,
 				1E3A2FB014D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m in Sources */,
 				D0C00A1814DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m in Sources */,
+				1A6A28EB14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +903,7 @@
 				D0B6D0BE14CE2DAF00769330 /* EXPMatchers+toRespondToTest.m in Sources */,
 				1E3A2F9E14D7AD6A00F1C46B /* EXPMatchers+toSupportArchivingTest.m in Sources */,
 				D0C00A2114DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */,
+				1A840BC714E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

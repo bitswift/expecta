@@ -16,3 +16,4 @@
 #import "EXPMatchers+toRespondTo.h"
 #import "EXPMatchers+toSupportArchiving.h"
 #import "EXPMatchers+toSupportCopying.h"
+#import "EXPMatchers+toInvoke.h"
