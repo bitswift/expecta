@@ -8,7 +8,14 @@
 @implementation EXPMatchers_toInvokeTest
 
 @synthesize someValue = m_someValue;
-@synthesize anotherValue = m_anotherValue;
+
+- (void)setAnotherValue:(NSUInteger)value {
+  self.someValue = value;
+}
+
+- (NSUInteger)anotherValue {
+  return self.someValue;
+}
 
 - (void)setUp {
   self.someValue = 0;
@@ -27,6 +34,12 @@
     self.someValue = 10;
   } copy]).toInvoke(self, @selector(setSomeValue:)));
   assertEquals(self.someValue, (NSUInteger)10);
+
+  assertPass(test_expect([^{
+    self.anotherValue = 15;
+  } copy]).toInvoke(self, @selector(setSomeValue:)));
+  assertEquals(self.anotherValue, (NSUInteger)15);
+  assertEquals(self.someValue, (NSUInteger)15);
 }
 
 - (void)test_Not_toInvoke {
@@ -41,6 +54,14 @@
     self.someValue = 20;
   } copy]).Not.toInvoke(self, @selector(setAnotherValue:)));
   assertEquals(self.someValue, (NSUInteger)20);
+
+  failureMessage = [NSString stringWithFormat:@"expected: setSomeValue: not to be invoked on %@", self];
+
+  assertFail(test_expect([^{
+    self.anotherValue = 15;
+  } copy]).Not.toInvoke(self, @selector(setSomeValue:)), failureMessage);
+  assertEquals(self.anotherValue, (NSUInteger)15);
+  assertEquals(self.someValue, (NSUInteger)15);
 }
 
 @end
