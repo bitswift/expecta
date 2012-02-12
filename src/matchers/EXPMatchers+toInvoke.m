@@ -1,72 +1,93 @@
 #import "EXPMatchers+toInvoke.h"
 #import <objc/runtime.h>
 
-/**
- * We can't put ivars in here, because we're going to swizzle some classes.
- *
- * In fact, this is an empty class, waiting to be filled with a block for its
- * forwardInvocation: selector.
- */
-@interface EXPMatcherToInvokeProxy : NSProxy
-@end
-
-
-// The actual value passed to expect must be a heap allocated block.
-
 EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
   BOOL actualIsNil = (actual == nil);
   BOOL targetIsNil = (target == nil);
   BOOL actionIsNil = (action == NULL);
 
+  Class realClass = Nil;
+  if (target)
+    realClass = object_getClass(target);
+
+  Method method = NULL;
+  if (realClass && action)
+    method = class_getInstanceMethod(realClass, action);
+
   prerequisite(^BOOL{
-    return !(actualIsNil || targetIsNil || actionIsNil);
+    if (actualIsNil || targetIsNil || actionIsNil)
+      return NO;
+
+    if (!method)
+      return NO;
+    
+    return YES;
   });
 
   match(^BOOL{
+    // dynamically create a subclass of the target's class, which it will be set
+    // to, so we can intercept the one message we care about
+    const char *proxyClassName = [[NSStringFromClass(realClass) stringByAppendingString:@"_EXPToInvokeProxy"] UTF8String];
+    Class proxyClass = objc_getClass(proxyClassName);
 
-    Class realClass = object_getClass(target);
+    if (!proxyClass) {
+      proxyClass = objc_allocateClassPair(realClass, proxyClassName, 0);
+      objc_registerClassPair(proxyClass);
+    }
+
+    // look up an implementation for a method that doesn't exist, thus
+    // grabbing a function pointer internal to the runtime, which will forward
+    // messages to -forwardInvocation:
+    NSString *fakeSelector = [@"_thisReallyTrulyShouldNotExist_" stringByAppendingString:NSStringFromSelector(action)];
+    IMP forward = class_getMethodImplementation(proxyClass, NSSelectorFromString(fakeSelector));
+
+    class_replaceMethod(proxyClass, action, forward, method_getTypeEncoding(method));
+
     __block BOOL invoked = NO;
 
     id forwardInvocationBlock = ^(id myself, NSInvocation *invocation) {
-      @try {
-        // Re-swizzle class
+      if (action == invocation.selector) {
+        // We have our answer
+        invoked = YES;
+
+        // swizzle back to the original class
         object_setClass(myself, realClass);
-
-        // Call original implementation
-        [invocation invokeWithTarget:myself];
-
-        if (action == invocation.selector) {
-          // We have our answer
-          invoked = YES;
-        }
-      } @catch (NSException *ex) {
-      } @finally {
-        object_setClass(myself, [EXPMatcherToInvokeProxy class]);
       }
+
+      // re-invoke
+      [invocation invokeWithTarget:myself];
     };
 
-    id methodSignatureBlock = ^(id myself, SEL selector) {
+    id methodSignatureBlock = ^ id (id myself, SEL selector) {
       return [realClass instanceMethodSignatureForSelector:selector];
     };
 
-    // Set forwardSelectorBlock as the forwardInvocation: implementation on EXPMatcherToInvokeProxy
-    const char *forwardInvocationTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([EXPMatcherToInvokeProxy class], @selector(forwardInvocation:)));
+    // Set the forwardInvocationBlock as the forwardInvocation: implementation on the proxy
+    const char *forwardInvocationTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(proxyClass, @selector(forwardInvocation:)));
     IMP forwardInvocationIMP = imp_implementationWithBlock((__bridge void *)forwardInvocationBlock);
 
-    class_replaceMethod([EXPMatcherToInvokeProxy class], @selector(forwardInvocation:), forwardInvocationIMP, forwardInvocationTypeEncoding);
+    class_replaceMethod(proxyClass, @selector(forwardInvocation:), forwardInvocationIMP, forwardInvocationTypeEncoding);
 
     // Set methodSignatureBlock as the methodSignatureForSelector: implementation
-    const char *methodSignatureTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([EXPMatcherToInvokeProxy class], @selector(methodSignatureForSelector:)));
+    const char *methodSignatureTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(proxyClass, @selector(methodSignatureForSelector:)));
     IMP methodSignatureIMP = imp_implementationWithBlock((__bridge void *)methodSignatureBlock);
 
-    class_replaceMethod([EXPMatcherToInvokeProxy class], @selector(methodSignatureForSelector:), methodSignatureIMP, methodSignatureTypeEncoding);
+    class_replaceMethod(proxyClass, @selector(methodSignatureForSelector:), methodSignatureIMP, methodSignatureTypeEncoding);
 
-    // Swizzle the class of the target and run the actual block
-    object_setClass(target, [EXPMatcherToInvokeProxy class]);
-    void (^actualBlock)(void) = actual;
-    actualBlock();
+    @try {
+      // Swizzle the class of the target and run the actual block
+      object_setClass(target, proxyClass);
+      void (^actualBlock)(void) = actual;
 
-    object_setClass(target, realClass);
+      actualBlock();
+    } @finally {
+      object_setClass(target, realClass);
+
+      // restore the original method on the proxy, in case it gets reused for
+      // future tests
+      class_replaceMethod(proxyClass, action, method_getImplementation(method), method_getTypeEncoding(method));
+    }
+
     return invoked;
   });
 
@@ -74,6 +95,8 @@ EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
     if(actualIsNil) return @"the actual value is nil/null";
     if(targetIsNil) return @"the target is nil/null";
     if(actionIsNil) return @"the action to be invoked is nil/null";
+    if(!method) return @"the target does not implement the action";
+
     return [NSString stringWithFormat:@"expected: %@ to be invoked on %@", NSStringFromSelector(action), target];
   });
 
@@ -81,21 +104,9 @@ EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
     if(actualIsNil) return @"the actual value is nil/null";
     if(targetIsNil) return @"the target is nil/null";
     if(actionIsNil) return @"the action which should not be invoked is nil/null";
+    if(!method) return @"the target does not implement the action";
+
     return [NSString stringWithFormat:@"expected: %@ not to be invoked on %@", NSStringFromSelector(action), target];
   });
 }
 EXPMatcherImplementationEnd
-
-
-@implementation EXPMatcherToInvokeProxy
-
-- (void)forwardInvocation:(NSInvocation *)invocation {
-    NSLog(@"%s should never be invoked before being swizzled", __func__);
-}
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-    NSLog(@"%s should never be invoked before being swizzled", __func__);
-    return nil;
-}
-
-@end
