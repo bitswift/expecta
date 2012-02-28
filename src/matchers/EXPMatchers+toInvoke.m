@@ -45,6 +45,8 @@ EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
 
     __block BOOL invoked = NO;
 
+    // add a custom implementation of -forwardInvocation: which will check for
+    // our selector
     id forwardInvocationBlock = ^(id myself, NSInvocation *invocation) {
       if (action == invocation.selector) {
         // We have our answer
@@ -58,21 +60,31 @@ EXPMatcherImplementationBegin(toInvoke, (id target, SEL action)) {
       [invocation invokeWithTarget:myself];
     };
 
-    id methodSignatureBlock = ^ id (id myself, SEL selector) {
-      return [realClass instanceMethodSignatureForSelector:selector];
-    };
-
-    // Set the forwardInvocationBlock as the forwardInvocation: implementation on the proxy
     const char *forwardInvocationTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(proxyClass, @selector(forwardInvocation:)));
     IMP forwardInvocationIMP = imp_implementationWithBlock((__bridge void *)forwardInvocationBlock);
 
     class_replaceMethod(proxyClass, @selector(forwardInvocation:), forwardInvocationIMP, forwardInvocationTypeEncoding);
 
-    // Set methodSignatureBlock as the methodSignatureForSelector: implementation
+    // add a custom implementation of -methodSignatureForSelector: to support
+    // the method forwarding
+    id methodSignatureBlock = ^ id (id myself, SEL selector) {
+      return [realClass instanceMethodSignatureForSelector:selector];
+    };
+
     const char *methodSignatureTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(proxyClass, @selector(methodSignatureForSelector:)));
     IMP methodSignatureIMP = imp_implementationWithBlock((__bridge void *)methodSignatureBlock);
 
     class_replaceMethod(proxyClass, @selector(methodSignatureForSelector:), methodSignatureIMP, methodSignatureTypeEncoding);
+
+    // add an -isEqual: method to compare equal to the original class
+    id isEqualBlock = ^ BOOL (Class myself, Class otherClass) {
+      return [realClass isEqual:otherClass];
+    };
+
+    const char *isEqualTypeEncoding = method_getTypeEncoding(class_getClassMethod(proxyClass, @selector(isEqual:)));
+    IMP isEqualIMP = imp_implementationWithBlock((__bridge void *)isEqualBlock);
+
+    class_replaceMethod(object_getClass(proxyClass), @selector(isEqual:), isEqualIMP, isEqualTypeEncoding);
 
     @try {
       // Swizzle the class of the target and run the actual block
