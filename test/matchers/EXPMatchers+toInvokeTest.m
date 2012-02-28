@@ -27,17 +27,23 @@
 
   assertFail(test_expect([^{
     self.someValue = 5;
+
+    // verify that the class of 'self' is still correct within the block
+    assertEqualObjects(self.class, [EXPMatchers_toInvokeTest class]);
   } copy]).toInvoke(self, @selector(setAnotherValue:)), failureMessage);
+
   assertEquals(self.someValue, (NSUInteger)5);
 
   assertPass(test_expect([^{
     self.someValue = 10;
   } copy]).toInvoke(self, @selector(setSomeValue:)));
+
   assertEquals(self.someValue, (NSUInteger)10);
 
   assertPass(test_expect([^{
     self.anotherValue = 15;
   } copy]).toInvoke(self, @selector(setSomeValue:)));
+
   assertEquals(self.anotherValue, (NSUInteger)15);
   assertEquals(self.someValue, (NSUInteger)15);
 }
@@ -47,6 +53,9 @@
 
   assertFail(test_expect([^{
     self.anotherValue = 15;
+    
+    // verify that the class of 'self' is still correct within the block
+    assertEqualObjects(self.class, [EXPMatchers_toInvokeTest class]);
   } copy]).Not.toInvoke(self, @selector(setAnotherValue:)), failureMessage);
   assertEquals(self.anotherValue, (NSUInteger)15);
 
