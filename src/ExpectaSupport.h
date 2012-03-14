@@ -22,10 +22,10 @@ EXPFixCategoriesBug(EXPMatcher##matcherName##Matcher); \
 @dynamic matcherName;\
 - (void(^) matcherArguments) matcherName { \
   __block id actual = self.actual; \
-  __block void (^prerequisite)(EXPBoolBlock block) = ^(EXPBoolBlock block) { self.prerequisiteBlock = block; }; \
-  __block void (^match)(EXPBoolBlock block) = ^(EXPBoolBlock block) { self.matchBlock = block; }; \
-  __block void (^failureMessageForTo)(EXPStringBlock block) = ^(EXPStringBlock block) { self.failureMessageForToBlock = block; }; \
-  __block void (^failureMessageForNotTo)(EXPStringBlock block) = ^(EXPStringBlock block) { self.failureMessageForNotToBlock = block; }; \
+  void (^prerequisite)(EXPBoolBlock block) = ^(EXPBoolBlock block) { self.prerequisiteBlock = block; }; \
+  void (^match)(EXPBoolBlock block) = ^(EXPBoolBlock block) { self.matchBlock = block; }; \
+  void (^failureMessageForTo)(EXPStringBlock block) = ^(EXPStringBlock block) { self.failureMessageForToBlock = block; }; \
+  void (^failureMessageForNotTo)(EXPStringBlock block) = ^(EXPStringBlock block) { self.failureMessageForNotToBlock = block; }; \
   prerequisite(nil); match(nil); failureMessageForTo(nil); failureMessageForNotTo(nil); \
   void (^matcherBlock) matcherArguments = ^ matcherArguments { \
     {
