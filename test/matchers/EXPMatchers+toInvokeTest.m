@@ -48,6 +48,22 @@
   assertEquals(self.someValue, (NSUInteger)15);
 }
 
+- (void)test_toInvoke_Reentrancy {
+  NSObject *obj = [[[NSObject alloc] init] autorelease];
+
+  // verify that toInvoke() can be nested
+  assertPass(test_expect([^{
+    assertPass(test_expect([^{
+      self.someValue = 10;
+
+      // and other matchers can be nested within too
+      assertPass(test_expect(self.someValue).toEqual(10));
+    } copy]).Not.toInvoke(self, @selector(setAnotherValue:)));
+
+    [obj description];
+  } copy]).toInvoke(obj, @selector(description)));
+}
+
 - (void)test_Not_toInvoke {
   NSString *failureMessage = [NSString stringWithFormat:@"expected: setAnotherValue: not to be invoked on %@", self];
 
