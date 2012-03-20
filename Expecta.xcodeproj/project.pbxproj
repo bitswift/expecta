@@ -73,6 +73,12 @@
 		D0C00A1914DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C00A1514DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m */; };
 		D0C00A2114DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C00A2014DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m */; };
 		D0C00A2214DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C00A2014DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m */; };
+		D0C0484C15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C0484A15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h */; };
+		D0C0484D15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C0484A15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h */; };
+		D0C0484E15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C0484B15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m */; };
+		D0C0484F15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C0484B15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m */; };
+		D0C04851151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C04850151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m */; };
+		D0C04852151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C04850151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m */; };
 		E1EB1BC313BEA1BE00E4C93B /* EXPDoubleTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EB1BBF13BEA1BE00E4C93B /* EXPDoubleTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1EB1BC413BEA1BE00E4C93B /* EXPDoubleTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EB1BBF13BEA1BE00E4C93B /* EXPDoubleTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1EB1BC513BEA1BE00E4C93B /* EXPDoubleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EB1BC013BEA1BE00E4C93B /* EXPDoubleTuple.m */; };
@@ -240,6 +246,9 @@
 		D0C00A1414DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toSupportCopying.h"; sourceTree = "<group>"; };
 		D0C00A1514DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toSupportCopying.m"; sourceTree = "<group>"; };
 		D0C00A2014DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toSupportCopyingTest.m"; sourceTree = "<group>"; };
+		D0C0484A15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toTriggerNotificationForKeyPath.h"; sourceTree = "<group>"; };
+		D0C0484B15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toTriggerNotificationForKeyPath.m"; sourceTree = "<group>"; };
+		D0C04850151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+toTriggerNotificationForKeyPathTest.m"; sourceTree = "<group>"; };
 		E1EB1BBF13BEA1BE00E4C93B /* EXPDoubleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPDoubleTuple.h; sourceTree = "<group>"; };
 		E1EB1BC013BEA1BE00E4C93B /* EXPDoubleTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXPDoubleTuple.m; sourceTree = "<group>"; };
 		E1EB1BC113BEA1BE00E4C93B /* EXPFloatTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPFloatTuple.h; sourceTree = "<group>"; };
@@ -450,14 +459,16 @@
 				E94296F713B430DF0038708B /* EXPMatchers+toContain.m */,
 				E9ACDF5213B2DDC60010F4D7 /* EXPMatchers+toEqual.h */,
 				E9ACDF5313B2DDC60010F4D7 /* EXPMatchers+toEqual.m */,
+				1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */,
+				1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */,
 				D0B6D0B614CE2D0900769330 /* EXPMatchers+toRespondTo.h */,
 				D0B6D0B714CE2D0900769330 /* EXPMatchers+toRespondTo.m */,
 				1E3A2FAC14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h */,
 				1E3A2FAD14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m */,
 				D0C00A1414DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h */,
 				D0C00A1514DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m */,
-				1A6A28E714E5F64400EA54BC /* EXPMatchers+toInvoke.h */,
-				1A6A28E814E5F64400EA54BC /* EXPMatchers+toInvoke.m */,
+				D0C0484A15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h */,
+				D0C0484B15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m */,
 				E9ACDF5413B2DDC60010F4D7 /* EXPMatchers.h */,
 			);
 			path = matchers;
@@ -496,10 +507,11 @@
 				D0B6D0B314CE2A5200769330 /* EXPMatchers+toConformToTest.m */,
 				E94296F313B42E160038708B /* EXPMatchers+toContainTest.m */,
 				E9ACDF7B13B2DEB70010F4D7 /* EXPMatchers+toEqualTest.m */,
+				1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */,
 				D0B6D0BD14CE2DAF00769330 /* EXPMatchers+toRespondToTest.m */,
 				1E3A2F9A14D7AA3000F1C46B /* EXPMatchers+toSupportArchivingTest.m */,
 				D0C00A2014DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m */,
-				1A840BC614E611030033B09D /* EXPMatchers+toInvokeTest.m */,
+				D0C04850151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m */,
 			);
 			path = matchers;
 			sourceTree = "<group>";
@@ -581,6 +593,7 @@
 				1E3A2FAF14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h in Headers */,
 				D0C00A1714DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h in Headers */,
 				1A6A28EA14E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */,
+				D0C0484D15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +630,7 @@
 				1E3A2FAE14D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.h in Headers */,
 				D0C00A1614DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.h in Headers */,
 				1A6A28E914E5F64400EA54BC /* EXPMatchers+toInvoke.h in Headers */,
+				D0C0484C15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +816,7 @@
 				1E3A2FB114D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m in Sources */,
 				D0C00A1914DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m in Sources */,
 				1A6A28EC14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */,
+				D0C0484F15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +851,7 @@
 				1E3A2F9F14D7AD7F00F1C46B /* EXPMatchers+toSupportArchivingTest.m in Sources */,
 				D0C00A2214DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */,
 				1A840BC814E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */,
+				D0C04852151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +886,7 @@
 				1E3A2FB014D7B5A500F1C46B /* EXPMatchers+toSupportArchiving.m in Sources */,
 				D0C00A1814DDE47500C8DDD8 /* EXPMatchers+toSupportCopying.m in Sources */,
 				1A6A28EB14E5F64400EA54BC /* EXPMatchers+toInvoke.m in Sources */,
+				D0C0484E15183695006010A5 /* EXPMatchers+toTriggerNotificationForKeyPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +921,7 @@
 				1E3A2F9E14D7AD6A00F1C46B /* EXPMatchers+toSupportArchivingTest.m in Sources */,
 				D0C00A2114DDE64500C8DDD8 /* EXPMatchers+toSupportCopyingTest.m in Sources */,
 				1A840BC714E611030033B09D /* EXPMatchers+toInvokeTest.m in Sources */,
+				D0C04851151838B9006010A5 /* EXPMatchers+toTriggerNotificationForKeyPathTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

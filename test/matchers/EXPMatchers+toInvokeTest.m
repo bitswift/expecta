@@ -6,8 +6,7 @@
 @end
 
 @implementation EXPMatchers_toInvokeTest
-
-@synthesize someValue = m_someValue;
+@synthesize someValue = _someValue;
 
 - (void)setAnotherValue:(NSUInteger)value {
   self.someValue = value;
