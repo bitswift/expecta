@@ -1,4 +1,5 @@
 #import "Fixtures.h"
+#import <objc/runtime.h>
 
 @implementation Foo; @end
 
@@ -17,7 +18,12 @@
 
 @end
 
-@implementation Baz; @end
+@implementation Baz;
++ (void)load {
+  class_addProtocol(self, @protocol(NSMutableCopying));
+}
+
+@end
 
 @implementation EncodableObject
 @synthesize array = m_array;
