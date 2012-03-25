@@ -13,6 +13,8 @@ EXPMatcherImplementationBegin(toConformTo, (Protocol *expected)) {
   });
 
   match(^BOOL{
+    missingMethod = NULL;
+
     if (![actual conformsToProtocol:expected])
       return NO;
 
@@ -44,7 +46,6 @@ EXPMatcherImplementationBegin(toConformTo, (Protocol *expected)) {
     }
 
     free(classMethodDescriptions);
-
     return YES;
   });
 
