@@ -20,6 +20,7 @@
 
 - (void)test_toConformTo {
   assertPass(test_expect(foo).toConformTo(@protocol(NSURLConnectionDelegate)));
+  assertPass(test_expect([foo class]).toConformTo(@protocol(NSURLConnectionDelegate)));
   assertPass(test_expect(bar).toConformTo(@protocol(NSURLConnectionDelegate)));
   assertPass(test_expect(bar).toConformTo(@protocol(NSObject)));
   assertFail(test_expect(nil).toConformTo(@protocol(NSURLConnectionDelegate)), @"the actual value is nil/null");
@@ -31,10 +32,12 @@
   // Baz nominally conforms to <NSMutableCopying>, but doesn't implement all of
   // the required methods
   assertFail(test_expect(baz).toConformTo(@protocol(NSMutableCopying)), @"expected: an object conforming to <NSMutableCopying>, got: an instance of Baz, which does not respond to -mutableCopyWithZone:");
+  assertFail(test_expect([baz class]).toConformTo(@protocol(NSMutableCopying)), @"expected: an object conforming to <NSMutableCopying>, got: an instance of Baz, which does not respond to -mutableCopyWithZone:");
 }
 
 - (void)test_Not_toConformTo {
   assertPass(test_expect(foo).Not.toConformTo(@protocol(NSCoding)));
+  assertPass(test_expect([foo class]).Not.toConformTo(@protocol(NSCoding)));
   assertPass(test_expect(bar).Not.toConformTo(@protocol(NSCoding)));
   assertPass(test_expect(baz).Not.toConformTo(@protocol(NSURLConnectionDelegate)));
   assertFail(test_expect(nil).Not.toConformTo(@protocol(NSURLConnectionDelegate)), @"the actual value is nil/null");
@@ -44,6 +47,7 @@
   assertPass(test_expect(qux).Not.toConformTo(@protocol(NSURLConnectionDelegate)));
 
   assertPass(test_expect(baz).Not.toConformTo(@protocol(NSMutableCopying)));
+  assertPass(test_expect([baz class]).Not.toConformTo(@protocol(NSMutableCopying)));
 }
 
 @end

@@ -4,6 +4,7 @@
 EXPMatcherImplementationBegin(toConformTo, (Protocol *expected)) {
   BOOL actualIsNil = (actual == nil);
   BOOL expectedIsNil = (expected == nil);
+  BOOL actualIsClass = (!actualIsNil && class_isMetaClass(object_getClass(actual)));
 
   __block SEL missingMethod = NULL;
   __block BOOL missingMethodIsInstanceMethod = NO;
@@ -24,7 +25,14 @@ EXPMatcherImplementationBegin(toConformTo, (Protocol *expected)) {
     
     for (unsigned i = 0; i < instanceMethodCount; ++i) {
       SEL name = instanceMethodDescriptions[i].name;
-      if (![actual respondsToSelector:name]) {
+
+      BOOL responds;
+      if (actualIsClass)
+        responds = [actual instancesRespondToSelector:name];
+      else
+        responds = [actual respondsToSelector:name];
+
+      if (!responds) {
         missingMethod = name;
         missingMethodIsInstanceMethod = YES;
         return NO;
@@ -39,7 +47,7 @@ EXPMatcherImplementationBegin(toConformTo, (Protocol *expected)) {
     
     for (unsigned i = 0; i < classMethodCount; ++i) {
       SEL name = classMethodDescriptions[i].name;
-      if (![actual respondsToSelector:name])
+      if (![[actual class] respondsToSelector:name])
         missingMethod = name;
         missingMethodIsInstanceMethod = NO;
         return NO;
