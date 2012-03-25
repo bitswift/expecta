@@ -6,6 +6,7 @@
 - (NSString *)barMethod;
 @end
 
+// fakes conformance to <NSMutableCopying>
 @interface Baz : NSObject; @end;
 
 @interface EncodableObject : NSObject <NSCoding>
