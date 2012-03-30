@@ -15,7 +15,10 @@ EXPMatcherImplementationBegin(toSupportCopying, (void)) {
     if (!expected)
       return NO;
 
-    return [actual isEqual:expected];
+    BOOL equal = [actual isEqual:expected];
+    [expected release];
+
+    return equal;
   });
 
   failureMessageForTo(^NSString *{
